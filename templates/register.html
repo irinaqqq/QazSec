@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<style>
+		body {
+			background-image: url("https://wallpaperaccess.com/full/1673318.jpg");
+			background-size: cover;
+      background-position: center;
+			color: black;
+			font-family: Arial, sans-serif;
+		}
+    form {
+			max-width: 500px;
+      max-height: 450px;
+			margin: 0px auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+			background-color: rgba(255, 255, 255, 0.8);
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      
+		}
+
+		h2 {
+			margin-top: 0px;
+			text-align: center;
+			font-size: 2rem;
+			text-shadow: 2px 2px 4px #000000;
+      color: white;
+      margin-bottom: 5px;
+		}
+
+
+
+		form label, form input[type="text"], form input[type="password"], form input[type="email"] {
+			display: block;
+			margin-bottom: 10px;
+			font-size: 1rem;
+		}
+
+
+		form input[type="text"], form input[type="password"], form input[type="email"] {
+			width: 100%;
+			padding: 0px;
+			border-radius: 5px;
+			border: none;
+			box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+			transition: box-shadow 0.3s ease-in-out;
+		}
+
+		form input[type="text"]:focus, form input[type="password"]:focus, form input[type="email"]:focus{
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+		}
+
+		form button[type="submit"] {
+			color: #fff;
+			background-color: #333;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+      margin-top: 15px;
+		}
+
+		form button[type="submit"]:hover {
+			background-color: #444;
+		}
+
+		a {
+			display: block;
+			margin-top: 20px;
+			text-align: center;
+			color: white;
+			text-shadow: 2px 2px 4px #000000;
+			font-size: 1.2rem;
+			text-decoration: none;
+			transition: color 0.3s ease-in-out;
+		}
+
+		a:hover {
+			color: #ccc;
+		}
+
+	</style>
+</head>
+<body>
+	<h2>Тіркелу</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="first_name">Сіздің атыңыз:</label>
+    <input type="text" name="first_name" id="first_name">
+    <label for="last_name">Сіздің атыңыз:</label>
+    <input type="text" name="last_name" id="last_name">
+    <label for="username">Пайдаланушы аты:</label>
+    <input type="text" name="username" id="username">
+    <label for="email">Электрондық пошта:</label>
+    <input type="email" name="email" id="email">
+    <label for="phone_number">Сіздің телефон нөміріңіз:</label>
+    <input type="text" name="phone_number" id="phone_number">
+    <label for="password1">Құпия сөз:</label>
+    <input type="password" name="password1" id="password1">
+    <label for="password2">Құпия сөзді растаңыз:</label>
+    <input type="password" name="password2" id="password2">
+    <button type="submit">Тіркелу</button>
+  </form>
+  {% if form.errors %}
+  <div class="alert alert-danger">
+    {% for field in form %}
+      {% for error in field.errors %}
+        <strong>{{ field.label }}:</strong> {{ error }}
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endif %}
+  <a href="{% url 'login' %}" style="display: block; margin-top: 50px; text-align: center; color: white; text-shadow: 2px 2px 4px #000000; font-size: 1.2rem; text-decoration: none; transition: color 0.3s ease-in-out;">Cізде аккаунт бар ма? Кіру</a>
+</body>
+</html>
